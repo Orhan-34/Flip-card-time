@@ -11,6 +11,7 @@
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   position: relative;
+  transition: all 0.3s ease;
 }
 
 .card-top, .card-bottom {
@@ -76,4 +77,27 @@
   .flip-card {
     background-color: #ffffff;
   }
-} 
+}
+
+/* Saniye gizlendiğinde saat ve dakika kartlarını büyüt */
+.clock-container:not(:has(.colon:nth-child(4))) .flip-card {
+  width: 180px;
+  height: 220px;
+}
+
+/* Büyük kartlar için rakam boyutunu da artır */
+.clock-container:not(:has(.colon:nth-child(4))) .digit {
+  font-size: 12rem;
+  height: 220px;
+  line-height: 220px;
+}
+
+/* Büyük kartlar için üst ve alt bölümleri ayarla */
+.clock-container:not(:has(.colon:nth-child(4))) .card-top,
+.clock-container:not(:has(.colon:nth-child(4))) .card-bottom {
+  height: 110px;
+}
+
+.clock-container:not(:has(.colon:nth-child(4))) .card-bottom .digit {
+  top: -110px;
+}

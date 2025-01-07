@@ -18,4 +18,9 @@ export interface ThemeContextType {
   toggleTheme: () => void;
   selectedColor: string;
   setSelectedColor: (color: string) => void;
+}
+
+export interface ColorContextType {
+  selectedColor: string;
+  setSelectedColor: (color: string) => void;
 } 

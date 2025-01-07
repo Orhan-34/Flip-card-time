@@ -4,7 +4,7 @@ import { useTheme } from '../context/ThemeContext';
 import '../styles/ColorPicker.css';
 
 const ColorPicker: React.FC = () => {
-  const { primaryColor, setPrimaryColor } = useColor();
+  const { selectedColor, setSelectedColor } = useColor();
   const { isDark } = useTheme();
   
   const colors = [
@@ -24,9 +24,9 @@ const ColorPicker: React.FC = () => {
         {colors.map((color, index) => (
           <button
             key={index}
-            className={`color-option ${color === primaryColor ? 'selected' : ''} ${color === '#000000' ? 'black-option' : ''}`}
+            className={`color-option ${color === selectedColor ? 'selected' : ''} ${color === '#000000' ? 'black-option' : ''}`}
             style={{ backgroundColor: color }}
-            onClick={() => setPrimaryColor(color)}
+            onClick={() => setSelectedColor(color)}
           />
         ))}
       </div>

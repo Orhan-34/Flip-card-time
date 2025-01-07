@@ -10,17 +10,17 @@ interface FlipCardProps {
 }
 
 const FlipCard: React.FC<FlipCardProps> = ({ digit, isLast = false }) => {
-  const { primaryColor } = useColor();
+  const { selectedColor } = useColor();
   const { isDark } = useTheme();
 
   return (
     <div className="flip-card-container">
       <div className="flip-card">
         <div className="card-top">
-          <div className="digit" style={{ color: primaryColor }}>{digit}</div>
+          <div className="digit" style={{ color: selectedColor }}>{digit}</div>
         </div>
         <div className="card-bottom">
-          <div className="digit" style={{ color: primaryColor }}>{digit}</div>
+          <div className="digit" style={{ color: selectedColor }}>{digit}</div>
         </div>
       </div>
       {/*{!isLast && <div className="digit-divider"></div>}*/}
