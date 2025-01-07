@@ -19,14 +19,19 @@
   text-align: center;
   font-size: 1.2rem;
   transition: color 0.3s ease;
+  padding-bottom: 10px;
+  border-bottom: 2px solid;
+  margin-bottom: 20px;
 }
 
 .color-picker.dark h3 {
   color: white;
+  border-bottom-color: rgba(255, 255, 255, 0.8);
 }
 
 .color-picker.light h3 {
   color: #1f2937;
+  border-bottom-color: rgba(0, 0, 0, 0.8);
 }
 
 .color-options {

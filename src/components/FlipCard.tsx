@@ -9,6 +9,20 @@ interface FlipCardProps {
   isLast?: boolean;
 }
 
+const cardStyle = (isDark: boolean) => ({
+  background: isDark ? 'rgba(30, 30, 30, 0.9)' : 'rgba(255, 255, 255, 0.9)',
+  borderRadius: '16px',
+  padding: '20px 24px',
+  fontSize: '3.5rem',
+  fontWeight: '600',
+  color: isDark ? '#FFFFFF' : '#000000',
+  boxShadow: isDark 
+    ? '0 8px 32px rgba(0, 0, 0, 0.4)' 
+    : '0 8px 32px rgba(0, 0, 0, 0.1)',
+  backdropFilter: 'blur(10px)',
+  border: `1px solid ${isDark ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)'}`,
+});
+
 const FlipCard: React.FC<FlipCardProps> = ({ digit, isLast = false }) => {
   const { selectedColor } = useColor();
   const { isDark } = useTheme();

@@ -10,17 +10,23 @@ const ColorPicker: React.FC = () => {
   const colors = [
     '#000000', // Siyah renk eklendi
     '#FF6B6B', // kırmızımsı
-    '#7BEF8E', // yeşil
     '#4D96FF', // mavi
-    '#FF69B4', // pembe
-    '#68E8DB', // turkuaz
-    '#FFEB3B'  // sarı
+    '#9FE7E3', // soft turkuaz
+    '#FFDAB9', // soft şeftali/somon
+    '#FFB5D8', // soft pembe
+    '#B5EFC0', // soft yeşil
+
   ];
 
   return (
     <div className={`color-picker ${isDark ? 'dark' : 'light'}`}>
-      <h3>Ana Renk</h3>
-      <div className="color-options">
+      <h3>Text Color</h3>
+      <div style={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '20px',
+        alignItems: 'center',
+      }}>
         {colors.map((color, index) => (
           <button
             key={index}
