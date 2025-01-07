@@ -1,0 +1,79 @@
+.flip-card-container {
+  display: inline-block;
+  margin: 0 6px;
+}
+
+.flip-card {
+  background-color: #ffffff;
+  width: 140px;
+  height: 180px;
+  margin: 5px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  position: relative;
+}
+
+.card-top, .card-bottom {
+  position: absolute;
+  width: 100%;
+  height: 90px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+.card-top {
+  top: 0;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.card-bottom {
+  bottom: 0;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.digit {
+  font-size: 10rem;
+  font-weight: 700;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  height: 180px;
+  line-height: 180px;
+  transition: color 0.3s ease;
+}
+
+.card-top .digit {
+  top: 0;
+}
+
+.card-bottom .digit {
+  top: -90px;
+}
+
+.digit-divider {
+  width: 6px;
+  height: 10px;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: inline-block;
+  margin: 0 10px;
+  vertical-align: middle;
+  border-radius: 3px;
+}
+
+/* Dark mode için medya sorgusu */
+@media (prefers-color-scheme: dark) {
+  .flip-card {
+    background-color: #ffffff;
+  }
+}
+
+/* Light mode için medya sorgusu */
+@media (prefers-color-scheme: light) {
+  .flip-card {
+    background-color: #ffffff;
+  }
+} 

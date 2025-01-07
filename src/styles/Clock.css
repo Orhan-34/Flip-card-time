@@ -1,0 +1,40 @@
+.time-toggle-btn {
+  transform: translateY(0);
+  min-width: 80px;
+  justify-content: center;
+}
+
+.time-toggle-btn:hover {
+  transform: translateY(-1px);
+}
+
+.time-toggle-btn.dark:hover {
+  background: #3D3D3D !important;
+}
+
+.time-toggle-btn.light:hover {
+  background: #E5E7EB !important;
+}
+
+.theme-toggle-btn {
+  min-width: 80px;
+  justify-content: center;
+}
+
+.clock-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 20px;
+}
+
+.time-section {
+  display: flex;
+  align-items: center;
+}
+
+.colon {
+  font-size: 3rem;
+  margin: 0 8px;
+} 

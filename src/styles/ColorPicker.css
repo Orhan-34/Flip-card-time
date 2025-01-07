@@ -1,0 +1,92 @@
+.color-picker {
+  padding: 20px;
+  border-radius: 15px;
+  margin-top: 30px;
+  transition: all 0.3s ease;
+}
+
+.color-picker.dark {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.color-picker.light {
+  background: rgb(249, 250, 251);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.color-picker h3 {
+  margin: 0 0 15px 0;
+  text-align: center;
+  font-size: 1.2rem;
+  transition: color 0.3s ease;
+}
+
+.color-picker.dark h3 {
+  color: white;
+}
+
+.color-picker.light h3 {
+  color: #1f2937;
+}
+
+.color-options {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+}
+
+.color-option {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  padding: 0;
+}
+
+.color-option:hover {
+  transform: scale(1.1);
+}
+
+.dark .color-option:hover {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+.light .color-option:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+.color-option:active {
+  transform: scale(0.95);
+}
+
+/* Seçili renk için özel stil */
+.dark .color-option.selected {
+  border: 2px solid white;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+.light .color-option.selected {
+  border: 2px solid #1f2937;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Siyah renk seçeneği için özel stil */
+.light .color-option.black-option {
+  border: 1px solid rgba(0, 0, 0, 0.1); /* Light modda siyah butonu belirginleştirmek için */
+}
+
+.light .color-option.black-option.selected {
+  border: 2px solid #1f2937;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.dark .color-option.black-option {
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Dark modda siyah butonu belirginleştirmek için */
+}
+
+.dark .color-option.black-option.selected {
+  border: 2px solid white;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+} 
