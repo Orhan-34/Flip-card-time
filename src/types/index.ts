@@ -13,12 +13,10 @@ export interface TimeContextType {
   toggle24Hour: () => void;
 }
 
-export interface ThemeContextType {
+export type ThemeContextType = {
   isDark: boolean;
   toggleTheme: () => void;
-  selectedColor: string;
-  setSelectedColor: (color: string) => void;
-}
+};
 
 export interface ColorContextType {
   selectedColor: string;

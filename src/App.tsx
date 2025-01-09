@@ -1,21 +1,25 @@
-import React, { FC } from 'react';
-import { TimeProvider } from './context/TimeContext';
-import { ThemeProvider } from './context/ThemeContext';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Clock } from './components/Clock';
+import { Pomodoro } from './components/Pomodoro';
+import { ThemeProvider } from './context/ThemeContext';
+import { TimeProvider } from './context/TimeContext';
 import { ColorProvider } from './context/ColorContext';
-import './App.css';
 
-const App: FC = () => {
+function App() {
   return (
-    <ThemeProvider>
-      <ColorProvider>
+    <Router>
+      <ThemeProvider>
         <TimeProvider>
-          <div className="App">
-            <Clock />
-          </div>
+          <ColorProvider>
+            <Routes>
+              <Route path="/" element={<Clock />} />
+              <Route path="/pomodoro" element={<Pomodoro />} />
+            </Routes>
+          </ColorProvider>
         </TimeProvider>
-      </ColorProvider>
-    </ThemeProvider>
+      </ThemeProvider>
+    </Router>
   );
 }
 

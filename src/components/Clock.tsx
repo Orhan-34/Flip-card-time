@@ -6,6 +6,7 @@ import { useTheme } from '../context/ThemeContext';
 import { BiTime, BiTimer, BiStopwatch, BiUpArrow, BiDownArrow } from 'react-icons/bi';
 import '../styles/Clock.css';
 import { useColor } from '../context/ColorContext';
+import { useNavigate } from 'react-router-dom';
 
 const TimerFlipCard = ({ 
   digit, 
@@ -134,13 +135,24 @@ const disabledButtonStyle = (isDark: boolean) => ({
   },
 });
 
+// Timer preset butonları için süreleri tanımlayalım
+const TIMER_PRESETS = [
+  { label: '15m', seconds: 15 * 60 },
+  { label: '25m', seconds: 25 * 60 },
+  { label: '30m', seconds: 30 * 60 },
+  { label: '45m', seconds: 45 * 60 },
+  { label: '60m', seconds: 60 * 60 },
+  { label: '75m', seconds: 75 * 60 },
+  { label: '90m', seconds: 90 * 60 },
+];
+
 export const Clock = () => {
   const { hour, minute, second, is24Hour, toggle24Hour } = useTime();
   const { isDark, toggleTheme } = useTheme();
   const [showSeconds, setShowSeconds] = useState(true);
   const [showDate, setShowDate] = useState(false);
   const { selectedColor } = useColor();
-  const [mode, setMode] = useState<'clock' | 'timer' | 'stopwatch'>('clock');
+  const [mode, setMode] = useState<'clock' | 'timer' | 'stopwatch' | 'pomodoro'>('clock');
   const [timerSeconds, setTimerSeconds] = useState(300); // 5 dakika
   const [stopwatchSeconds, setStopwatchSeconds] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
@@ -149,6 +161,7 @@ export const Clock = () => {
     minutes: '05',
     seconds: '00'
   });
+  const navigate = useNavigate();
 
   // Timer için useEffect
   useEffect(() => {
@@ -305,6 +318,17 @@ export const Clock = () => {
         minutes: '00',
         seconds: '00'
       });
+    }
+  };
+
+  // Timer preset seçimi için yeni fonksiyon
+  const handlePresetSelect = (seconds: number) => {
+    if (!isRunning) {
+      setTimerSeconds(seconds);
+      const hours = Math.floor(seconds / 3600).toString().padStart(2, '0');
+      const minutes = Math.floor((seconds % 3600) / 60).toString().padStart(2, '0');
+      const secs = (seconds % 60).toString().padStart(2, '0');
+      setTimerInput({ hours, minutes, seconds: secs });
     }
   };
 
@@ -554,7 +578,7 @@ export const Clock = () => {
               fontSize: '1.5rem',
               marginBottom: '4px'
             }}>
-              <BiTime size={28} />
+              <BiTime size={24} />
             </div>
             <span style={{ 
               fontSize: '0.9rem',
@@ -665,6 +689,46 @@ export const Clock = () => {
             <span style={{ fontSize: '1.2rem' }}>⏱️</span>
             <span style={{ fontSize: '0.8rem' }}>{mode === 'stopwatch' ? 'Clock' : 'Stopwatch'}</span>
           </button>
+
+          {/* Pomodoro butonu */}
+          <button
+            className={`time-toggle-btn ${isDark ? 'dark' : 'light'}`}
+            onClick={() => navigate('/pomodoro')}
+            style={{
+              ...commonButtonStyle(isDark),
+              position: 'relative',
+            }}
+          >
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              marginBottom: '4px'
+            }}>
+              <img 
+                src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzNiAzNiI+PHBhdGggZmlsbD0iI0ZGNzA1OCIgZD0iTTI5LjE3IDEwLjgzQzI2LjIxIDcuODggMjIuMjEgNiAxNy44MyA2Yy04LjgzIDAtMTYgNy4xNy0xNiAxNnM3LjE3IDE2IDE2IDE2YzQuMzggMCA4LjM4LTEuODggMTEuMzQtNC44MyAyLjk1LTIuOTUgNC44My02Ljk2IDQuODMtMTEuMzQgMC00LjM4LTEuODgtOC4zOC00LjgzLTExLjM0eiIvPjxwYXRoIGZpbGw9IiM2NkJGNkMiIGQ9Ik0xNy41IDI0LjVjLS44MjggMC0xLjUtLjY3Mi0xLjUtMS41di05YzAtLjgyOC42NzItMS41IDEuNS0xLjVzMS41LjY3MiAxLjUgMS41djljMCAuODI4LS42NzIgMS41LTEuNSAxLjV6Ii8+PC9zdmc+" 
+                alt="Pomodoro"
+                style={{
+                  width: '24px',
+                  height: '24px',
+                  objectFit: 'contain'
+                }}
+              />
+            </div>
+            <span style={{ fontSize: '0.8rem' }}>Pomodoro</span>
+          </button>
+        </div>
+
+        <div style={{
+          position: 'fixed',
+          right: '20px',
+          top: '50%',
+          transform: 'translateY(-50%)',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '20px'
+        }}>
+          <ColorPicker />
         </div>
 
         {renderTimerControls()}
@@ -701,18 +765,6 @@ export const Clock = () => {
             </button>
           </div>
         )}
-
-        <div style={{
-          position: 'fixed',
-          right: '20px',
-          top: '50%',
-          transform: 'translateY(-50%)',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '20px'
-        }}>
-          <ColorPicker />
-        </div>
       </div>
     </div>
   );
